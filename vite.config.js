@@ -10,17 +10,27 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig({
   plugins: [
     vue(),
-    // ...
     AutoImport({
       resolvers: [ElementPlusResolver()],
     }),
     Components({
-      resolvers: [ElementPlusResolver()],
+      resolvers: [
+      //1.配置elementP1us采用sass样式配色系绝
+      ElementPlusResolver({importStyle:"sass"}),
+      ],
     }),
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
-})
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+      //2,自动导入定制化样式文件进行样式覆盖
+      additionalData: `
+      @use "@/styles/element/index.scss" as *;
+      `,
+      }
+}}})
