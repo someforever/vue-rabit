@@ -16,6 +16,7 @@ onMounted(() => {
 
 <template>
   <HomePanel title="人气推荐"  sub-title="人气推荐,品质靠谱">
+     <!-- 下面是插槽主体内容模版 -->
     <ul class="goods-list">
     <li v-for="item in hotList" :key="item.id">
       <RouterLink to="/">
@@ -26,7 +27,7 @@ onMounted(() => {
     </li>
   </ul>
   </HomePanel>
-  <!-- 下面是插槽主体内容模版 -->
+ 
  
  
 </template>
