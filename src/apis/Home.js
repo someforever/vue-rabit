@@ -20,3 +20,10 @@ export function getHotAPI(){
     url: '/home/hot'
   })
 }
+
+// 获取全部分类数据
+export function getAllProductAPI(){
+  return httpInstance({
+    url: '/home/category/head'
+  })
+}
