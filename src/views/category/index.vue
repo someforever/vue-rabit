@@ -1,41 +1,15 @@
 <script setup>
-import { GetCategoryAPI } from '@/apis/Category'
-import { getBannerAPI } from '@/apis/Home.js'
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+
 import GoodItem from '@/views/home/components/GoodItem.vue'
-import {onBeforeRouteUpdate} from 'vue-router'
-const CategoryDate = ref({})
-const route = useRoute()
-const GetCategory = async (id = route.params.id) => {
-  const res = await GetCategoryAPI(id)
-  CategoryDate.value = res.result
-}
 
-onMounted(() => GetCategory())
+import {useBanner} from './composables/useBanner'
+import {useCategory} from './composables/useCategory'
 
-// 路由参数变化时可以重新发送分类数据接口
-onBeforeRouteUpdate((to)=>{
-  console.log('路由变化了');
-  // 存在问题：使用最新的路由参数请求最新的路由数据
-  console.log(to);
-  GetCategory(to.params.id)
-})
+const {bannerList} = useBanner()
 
-// 获取轮播图
-const bannerList = ref([])
+const {CategoryDate} = useCategory()
 
-const getBanner = async () => {
-  const res = await getBannerAPI({
-    distributionSite: '2'
-  })
-  console.log(res);
-  bannerList.value = res.result
-}
 
-onMounted(() => {
-  getBanner()
-})
 
 </script>
 
