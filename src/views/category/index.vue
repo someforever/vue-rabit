@@ -3,6 +3,7 @@ import { GetCategoryAPI } from '@/apis/Category'
 import { getBannerAPI } from '@/apis/Home.js'
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import GoodItem from '@/views/home/components/GoodItem.vue'
 const CategoryDate = ref({})
 const route = useRoute()
 const GetCategory = async () => {
@@ -46,6 +47,26 @@ onMounted(() => {
             <img :src="item.imgUrl" alt="">
           </el-carousel-item>
         </el-carousel>
+      </div>
+      <!-- 分类区域 -->
+      <div class="sub-list">
+        <h3>全部分类</h3>
+        <ul>
+          <li v-for="i in CategoryDate.children" :key="i.id">
+            <RouterLink to="/">
+              <img :src="i.picture" />
+              <p>{{ i.name }}</p>
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+      <div class="ref-goods" v-for="item in CategoryDate.children" :key="item.id">
+        <div class="head">
+          <h3>- {{ item.name }}-</h3>
+        </div>
+        <div class="body">
+          <GoodItem v-for="good in item.goods" :goods="good" :key="good.id" />
+        </div>
       </div>
     </div>
   </div>
@@ -130,6 +151,7 @@ onMounted(() => {
     padding: 25px 0;
   }
 }
+
 .home-banner {
   width: 1240px;
   height: 500px;
