@@ -1,11 +1,16 @@
 <script setup>
 import {ref} from 'vue'
+import {loginAPI} from '@/apis/user'
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
+import {useRouter} from 'vue-router'
 // 绑定表单
 const form = ref({
   account: '',
   password: '',
   agree: true
 })
+const router = useRouter()
 // 准备规则对象
 const rules = {
   account:[
@@ -32,13 +37,19 @@ const rules = {
 }
 const formRef = ref(null)
 const doLogin = ()=>{
-  formRef.value.validate((valid)=>{
+  const {account,password} = form.value
+  formRef.value.validate(async (valid)=>{
     // 所有表单都通过校验，valid才为true
     console.log(valid);
     // 然后才执行登录操作
     if(valid){
       // 登录
-      
+      const res = await loginAPI({account,password})
+      console.log(res);
+      // 1.提示用户
+      ElMessage({ type: 'success', message: '登录成功'})
+      // 2.跳转首页
+      router.replace({path:'/'})
     }
   })
 }
