@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 
 export const useCartStore = defineStore('cart', () => {
@@ -30,10 +30,19 @@ export const useCartStore = defineStore('cart', () => {
     // 2. 使用数组的过滤方法 filter
 
   }
+
+  // 计算属性
+  // 1. 总的数量 所有项的count之和
+  const allCount = computed(()=> cartList.value.reduce((a,c)=> a + c.count, 0 ))
+  // 2. 总价 所有项的count*price之和
+  const allPrice = computed(()=> cartList.value.reduce((a,c)=> a + c.count*c.price, 0 ))
+
   return {
     cartList,
     addCart,
-    delCart
+    delCart,
+    allCount,
+    allPrice
   }
 }, {
   persist: true,
