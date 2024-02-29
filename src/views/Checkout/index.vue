@@ -3,6 +3,11 @@ import { getCheckInfoAPI } from "@/apis/checkout";
 import {ref,onMounted} from 'vue';
 const checkInfo = ref({})  // 订单对象
 const curAddress = ref({})
+const addAddress = ref({
+  receiver: '',
+  contact: '',
+  address: ''
+})
 const getCheckInfo = async ()=>{
   const res = await getCheckInfoAPI()
   checkInfo.value = res.result
@@ -15,7 +20,7 @@ onMounted(() => getCheckInfo())
 
 // 控制弹窗打开
 const showDialog = ref(false)
-
+const addFlag = ref(false)
 // 切换地址
 const activeAddress = ref({})
 const switchAddress = (item)=>{
@@ -27,6 +32,20 @@ const confirm= ()=>{
   curAddress.value = activeAddress.value
   showDialog.value = false
   activeAddress.value = {}
+}
+
+const cancel= ()=>{
+  showDialog.value = false
+  activeAddress.value = {}
+  addFlag.value = false
+  addAddress.value = {}
+}
+
+const confirmAdd= ()=>{
+  console.log(addAddress.value);
+  console.log(checkInfo.value.userAddresses);
+  addFlag.value = false
+  addAddress.value = {}
 }
 
 </script>
@@ -141,12 +160,29 @@ const confirm= ()=>{
   </div>
   <template #footer>
     <span class="dialog-footer">
-      <el-button>取消</el-button>
+      <el-button @click="cancel">取消</el-button>
       <el-button type="primary" @click="confirm">确定</el-button>
     </span>
   </template>
 </el-dialog>
   <!-- 添加地址 -->
+  <el-dialog v-model="addFlag" title="添加收货地址" width="30%" center>
+  <div class="addressWrapper">
+    <div class="text item" >
+      <ul>
+      <li><span>收<i />货<i />人：</span> <el-input v-model="addAddress.receiver" placeholder="Please input" /> </li>
+      <li><span>联系方式：</span><el-input v-model="addAddress.contact" placeholder="Please input" /></li>
+      <li><span>收货地址：</span><el-input v-model="addAddress.address" placeholder="Please input" /></li>
+      </ul>
+    </div>
+  </div>
+  <template #footer>
+    <span class="dialog-footer">
+      <el-button @click="cancel">取消</el-button>
+      <el-button type="primary" @click="confirmAdd">确定</el-button>
+    </span>
+  </template>
+</el-dialog>
 </template>
 
 <style scoped lang="scss">
