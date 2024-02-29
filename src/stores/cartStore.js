@@ -109,11 +109,13 @@ export const useCartStore = defineStore(
       singleCheck,
       allCheck,
       clearCart,
+      updateNewList,
       selectedCount,
       selectedPrice,
       allCount,
       allPrice,
       isAll,
+      
     };
   },
   {
