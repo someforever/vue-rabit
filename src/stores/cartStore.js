@@ -21,9 +21,19 @@ export const useCartStore = defineStore('cart', () => {
       cartList.value.push(detailDate)
     }
   }
+
+  // 3. 定义action - delCart
+  const delCart = (skuId)=>{
+    // 1. 找到要删除的下标志 splice
+    const idx = cartList.value.findIndex((item) =>skuId === item.skuId)
+    cartList.value.splice(idx,1)
+    // 2. 使用数组的过滤方法 filter
+
+  }
   return {
     cartList,
-    addCart
+    addCart,
+    delCart
   }
 }, {
   persist: true,
