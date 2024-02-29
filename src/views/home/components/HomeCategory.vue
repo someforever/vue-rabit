@@ -1,6 +1,6 @@
 <script setup>
 // 引用pinia里的分类数据
-import { useCategoryStore } from '@/stores/category.js'
+import { useCategoryStore } from '@/stores/categoryStore.js'
 const categoryStore = useCategoryStore()
 </script>
 

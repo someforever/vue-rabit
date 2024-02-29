@@ -1,7 +1,7 @@
 <script setup>
 // vueuse 用useSCore 来判断移动距离
 import { useScroll } from '@vueuse/core'
-import { useCategoryStore } from '@/stores/category.js'
+import { useCategoryStore } from '@/stores/categoryStore.js'
 const { y } = useScroll(window)
 
 // 使用pinia中的数据
