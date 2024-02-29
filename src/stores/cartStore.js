@@ -59,7 +59,10 @@ export const useCartStore = defineStore(
       }
     };
 
-
+    //清除购物车
+    const clearCart = ()=>{
+      cartList.value = []
+    }
  
 
     // 计算属性
@@ -105,6 +108,7 @@ export const useCartStore = defineStore(
       delCart,
       singleCheck,
       allCheck,
+      clearCart,
       selectedCount,
       selectedPrice,
       allCount,
