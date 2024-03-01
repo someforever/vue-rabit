@@ -33,6 +33,7 @@ const switchAddress = (item)=>{
 }
 
 const confirm= ()=>{
+  console.log(activeAddress.value);
   curAddress.value = activeAddress.value
   showDialog.value = false
   activeAddress.value = {}
@@ -199,9 +200,9 @@ const createOrder = async () => {
   <div class="addressWrapper">
     <div class="text item" >
       <ul>
-      <li><span>收<i />货<i />人：</span> <el-input v-model="addAddress.receiver" placeholder="Please input" /> </li>
-      <li><span>联系方式：</span><el-input v-model="addAddress.contact" placeholder="Please input" /></li>
-      <li><span>收货地址：</span><el-input v-model="addAddress.address" placeholder="Please input" /></li>
+      <li><span>收<i />货<i />人：</span> <el-input v-model="addAddress.receiver"  /> </li>
+      <li><span>联系方式：</span><el-input v-model="addAddress.contact" /></li>
+      <li><span>收货地址：</span><el-input v-model="addAddress.address" /></li>
       </ul>
     </div>
   </div>
