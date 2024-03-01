@@ -1,6 +1,5 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore';
-
   const cartStore =  useCartStore()
   // 单选回调
   const singleCheck = (i,selected)=>{
@@ -13,6 +12,12 @@ import { useCartStore } from '@/stores/cartStore';
 
   const allCheck = (selected)=>{
     cartStore.allCheck(selected)
+  }
+  const delCart = ({skuId,selected})=>{
+    console.log(skuId);
+    console.log('删除',cartStore.delCart(skuId));
+    selected = false
+    
   }
 </script>
 
