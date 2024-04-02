@@ -7,7 +7,7 @@ app.directive('img-lazy',{
   mounted(el,binding){
     // el: 指令绑定的那个元素：img
     // binding: binding.value 指令等于号后面绑定的表达式的值，url
-    // console.log(el,binding.value);
+    console.log(el,binding.value);
     //使用vueuse里面的方法
     const {stop} = useIntersectionObserver(
       el, // 目标监听值
