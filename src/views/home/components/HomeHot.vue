@@ -6,7 +6,7 @@ const hotList = ref([])
 
 const hotProcDuct = async()=>{
     const res = await getHotAPI()
-    console.log(res);
+    // console.log(res);
     hotList.value = res.result
 }
 onMounted(() => {

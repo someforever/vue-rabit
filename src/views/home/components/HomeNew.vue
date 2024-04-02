@@ -6,7 +6,7 @@ const newList = ref([])
 
 const newProcDuct = async()=>{
     const res = await getNewAPI()
-    console.log(res);
+    // console.log(res);
     newList.value = res.result
 }
 onMounted(() => {
